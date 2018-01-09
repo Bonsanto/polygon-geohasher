@@ -33,16 +33,16 @@ outer_geohashes_polygon = geohashes_to_polygon(polygon_to_geohashes(test_polygon
 ```
 
 
-`geohash_to_polygon(geohash)`
+`geohash_to_polygon(geohash)`:
 
 This function receives a geohash, and returns a Shapely's Polygon.
 
-`geohashes_to_polygon(geohashes)`
+`geohashes_to_polygon(geohashes)`:
 
 This function receives a set of geohashes, and returns a Shapely's Polygon or MultiPolygon.
 
 
-`polygon_to_geohashes(polygon, precision, inner(optional))`.
+`polygon_to_geohashes(polygon, precision, inner(optional))`:
 
 This function receives a Shapely's Polygon, the precision of geohashes that
 will be used to create a polygon and returns a set of geohashes
