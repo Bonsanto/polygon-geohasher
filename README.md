@@ -11,7 +11,7 @@ geohashes that touch (intersects) the polygon. This library uses
 Polygon Geohasher requires:
 
 - Python >= 3.x.
-- GEOS >=3.3 (due to shapely).
+- GEOS >= 3.3 (due to shapely).
 
 ## Installing
 Linux users can get Polygon Geohasher from the Python Package Index with
