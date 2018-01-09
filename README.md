@@ -59,4 +59,4 @@ For instance you can see resulted geohashed polygons with both options.
 If you want to make any donation you can send to:
 
 - [BTC](bitcoin.org): 1H6VrFKCEabn3rbE9JJUSRXB7PU8Bm4SND
-- [BCC](bitcoincash.org: 1CmuSwFD9qghEfJ4DdSiRWLxfvK5Srfqsg
+- [BCC](bitcoincash.org): 1CmuSwFD9qghEfJ4DdSiRWLxfvK5Srfqsg
