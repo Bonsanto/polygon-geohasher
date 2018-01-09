@@ -2,6 +2,7 @@ import geohash
 import queue
 
 from shapely import geometry
+from shapely.ops import cascaded_union
 
 
 def geohash_to_polygon(geo):
@@ -15,7 +16,7 @@ def geohash_to_polygon(geo):
     return geometry.Polygon([corner_1, corner_2, corner_3, corner_4, corner_1])
 
 
-def geohashify(polygon, precision, inner=True):
+def polygon_to_geohashes(polygon, precision, inner=True):
     inner_geohashes = set()
     outer_geohashes = set()
 
@@ -49,3 +50,7 @@ def geohashify(polygon, precision, inner=True):
                         testing_geohashes.put(neighbor)
 
     return inner_geohashes
+
+
+def geohashes_to_polygon(geohashes):
+    return cascaded_union([geohash_to_polygon(g) for g in geohashes])
