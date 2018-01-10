@@ -1,8 +1,7 @@
 # polygon-geohasher
-Polygon Geohasher is a Open source Python package which converts a
-polygon into a set of geohashes with arbitrary precision. More
-conversely, it can obtain the set of geohashes inside a polygon or
-geohashes that touch (intersects) the polygon. This library uses
+Polygon Geohasher is an open source Python package for converting Shapely's
+polygons into a set of geohashes. In detail, it obtains the set of geohashes
+inside a polygon or geohashes that touch (intersects) the polygon. This library uses
     [python-geohash](https://pypi.python.org/pypi/Geohash/) and
 [shapely](http://toblerity.org/shapely/).
 
