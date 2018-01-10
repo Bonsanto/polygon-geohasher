@@ -17,13 +17,13 @@ Polygon Geohasher requires:
 Linux users can get Polygon Geohasher from the Python Package Index with
 pip (8+):
 
-`todo`
 `$ pip install polygon-geohasher`
 
 ## Usage
 Here are some simple examples:
 
 ```python
+from polygon_geohasher.polygon_geohasher import polygon_to_geohashes, geohashes_to_polygon
 from shapely import geometry
 
 polygon = geometry.Polygon([(-99.1795917, 19.432134), (-99.1656847, 19.429034),
