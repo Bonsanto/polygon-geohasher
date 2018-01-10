@@ -41,7 +41,7 @@ This function receives a geohash and returns a Shapely's Polygon.
 This function receives a set of geohashes and returns a Shapely's Polygon or MultiPolygon.
 
 
-`polygon_to_geohashes(polygon, precision, inner(optional))`:
+`polygon_to_geohashes(polygon, precision[, inner=True])`:
 
 This function receives a Shapely's Polygon and the precision of geohashes 
 to be used to create a polygon and returns a set of geohashes
