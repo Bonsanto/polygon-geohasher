@@ -6,6 +6,10 @@ from shapely.ops import cascaded_union
 
 
 def geohash_to_polygon(geo):
+    """
+    :param geo: String that represents the geohash.
+    :return: Returns a Shapely's Polygon instance that represents the geohash.
+    """
     lat_centroid, lng_centroid, lat_offset, lng_offset = geohash.decode_exactly(geo)
 
     corner_1 = (lat_centroid - lat_offset, lng_centroid - lng_offset)[::-1]
@@ -17,6 +21,12 @@ def geohash_to_polygon(geo):
 
 
 def polygon_to_geohashes(polygon, precision, inner=True):
+    """
+    :param polygon: shapely polygon.
+    :param precision: int. Geohashes' precision that form resulting polygon.
+    :param inner: bool, default 'True'. If false, geohashes that are completely outside from the polygon are ignored.
+    :return: set. Set of geohashes that form the polygon.
+    """
     inner_geohashes = set()
     outer_geohashes = set()
 
@@ -53,4 +63,8 @@ def polygon_to_geohashes(polygon, precision, inner=True):
 
 
 def geohashes_to_polygon(geohashes):
+    """
+    :param geohashes: array-like. List of geohashes to form resulting polygon.
+    :return: shapely geometry. Resulting Polygon after combining geohashes.
+    """
     return cascaded_union([geohash_to_polygon(g) for g in geohashes])
