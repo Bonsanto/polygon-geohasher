@@ -27,8 +27,8 @@ from shapely import geometry
 
 polygon = geometry.Polygon([(-99.1795917, 19.432134), (-99.1656847, 19.429034),
                             (-99.1776492, 19.414236), (-99.1795917, 19.432134)])
-inner_geohashes_polygon = geohashes_to_polygon(polygon_to_geohashes(test_polygon, 7))
-outer_geohashes_polygon = geohashes_to_polygon(polygon_to_geohashes(test_polygon, 7, False))
+inner_geohashes_polygon = geohashes_to_polygon(polygon_to_geohashes(polygon, 7))
+outer_geohashes_polygon = geohashes_to_polygon(polygon_to_geohashes(polygon, 7, False))
 ```
 
 
