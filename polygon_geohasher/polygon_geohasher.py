@@ -39,10 +39,17 @@ def polygon_to_geohashes(polygon, precision, inner=True):
     while not testing_geohashes.empty():
         current_geohash = testing_geohashes.get()
 
-        if current_geohash not in inner_geohashes and current_geohash not in outer_geohashes:
+        if (
+            current_geohash not in inner_geohashes
+            and current_geohash not in outer_geohashes
+        ):
             current_polygon = geohash_to_polygon(current_geohash)
 
-            condition = envelope.contains(current_polygon) if inner else envelope.intersects(current_polygon)
+            condition = (
+                envelope.contains(current_polygon)
+                if inner
+                else envelope.intersects(current_polygon)
+            )
 
             if condition:
                 if inner:
@@ -56,7 +63,10 @@ def polygon_to_geohashes(polygon, precision, inner=True):
                     else:
                         outer_geohashes.add(current_geohash)
                 for neighbor in geohash.neighbors(current_geohash):
-                    if neighbor not in inner_geohashes and neighbor not in outer_geohashes:
+                    if (
+                        neighbor not in inner_geohashes
+                        and neighbor not in outer_geohashes
+                    ):
                         testing_geohashes.put(neighbor)
 
     return inner_geohashes
