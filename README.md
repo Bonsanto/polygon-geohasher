@@ -54,10 +54,3 @@ See geohashed polygons resulting from both options (with and without `inner`) in
 following example:
 
 ![Example](./docs/images/geohashed-polygon-1.jpg)
-
-#### Donations
-
-Donations may be sent to:
-
-- [BTC](bitcoin.org): 1H6VrFKCEabn3rbE9JJUSRXB7PU8Bm4SND
-- [BCC](bitcoincash.org): 1CmuSwFD9qghEfJ4DdSiRWLxfvK5Srfqsg
