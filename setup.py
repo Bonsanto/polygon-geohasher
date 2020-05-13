@@ -15,7 +15,10 @@ def readme():
         return f.read()
 
 
-install_requires = ["shapely", "python-geohash"]
+def requirements():
+    with open("requirements.txt") as f:
+        return f.read()
+
 
 setup(
     name="polygon-geohasher",
@@ -27,7 +30,7 @@ setup(
     long_description=readme(),
     license="MIT",
     packages=find_packages(),
-    install_requires=install_requires,
+    install_requires=requirements(),
     include_package_data=False,
     classifiers=[
         "Development Status :: 3 - Alpha",
