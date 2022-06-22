@@ -20,6 +20,7 @@ setup(
     long_description=readme(),
     license="MIT",
     packages=find_packages(),
+    package_data={"": ["py.typed"]},
     install_requires=requirements(),
     include_package_data=False,
     classifiers=[
