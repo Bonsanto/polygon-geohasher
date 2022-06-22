@@ -1,13 +1,4 @@
-import re
 from setuptools import setup, find_packages
-
-
-# Get version without importing, which avoids dependency issues
-def get_version() -> str:
-    with open("polygon_geohasher/version.py") as version_file:
-        return re.search(
-            r"""__version__\s+=\s+(['"])(?P<version>.+?)\1""", version_file.read()
-        ).group("version")
 
 
 def readme() -> str:
@@ -22,7 +13,6 @@ def requirements() -> str:
 
 setup(
     name="polygon-geohasher",
-    version=get_version(),
     author="Alberto Bonsanto",
     author_email="",
     url="https://github.com/Bonsanto/polygon-geohasher",
