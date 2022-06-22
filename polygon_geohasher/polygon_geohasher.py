@@ -2,7 +2,7 @@ import geohash
 import queue
 
 from shapely import geometry
-from shapely.ops import cascaded_union
+from shapely.ops import unary_union
 
 
 def geohash_to_polygon(geo):
@@ -77,4 +77,4 @@ def geohashes_to_polygon(geohashes):
     :param geohashes: array-like. List of geohashes to form resulting polygon.
     :return: shapely geometry. Resulting Polygon after combining geohashes.
     """
-    return cascaded_union([geohash_to_polygon(g) for g in geohashes])
+    return unary_union([geohash_to_polygon(g) for g in geohashes])
