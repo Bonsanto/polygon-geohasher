@@ -55,7 +55,15 @@ following example:
 
 ![Example](./docs/images/geohashed-polygon-1.jpg)
 
-## Type Checking
+## Development
+
+To install the development environment:
+
+```console
+$ pip install -r requirements-dev.txt
+```
+
+### Type Checking
 
 This project uses `mypy` to check type annotations. Please run the following command prior
 to submitting a PR:
