@@ -54,3 +54,12 @@ See geohashed polygons resulting from both options (with and without `inner`) in
 following example:
 
 ![Example](./docs/images/geohashed-polygon-1.jpg)
+
+## Type Checking
+
+This project uses `mypy` to check type annotations. Please run the following command prior
+to submitting a PR:
+
+```console
+$ mypy .
+```
