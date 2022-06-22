@@ -34,7 +34,7 @@ def polygon_to_geohashes(polygon: geometry.Polygon, precision: int, inner: bool 
     envelope = polygon.envelope
     centroid = polygon.centroid
 
-    testing_geohashes = queue.Queue()
+    testing_geohashes: queue.Queue[str] = queue.Queue()
     testing_geohashes.put(geohash.encode(centroid.y, centroid.x, precision))
 
     while not testing_geohashes.empty():
