@@ -9,7 +9,7 @@ from shapely import geometry
 
 
 class TestSimpleMethods(unittest.TestCase):
-    def test_one_geohash(self):
+    def test_one_geohash(self) -> None:
         test_geohash = "x1"
         test_polygon = geohash_to_polygon(test_geohash)
         polygon = geohashes_to_polygon(polygon_to_geohashes(test_polygon, 2))
@@ -18,7 +18,7 @@ class TestSimpleMethods(unittest.TestCase):
         self.assertTrue(test_polygon.covers(test_polygon.intersection(polygon)))
         self.assertTrue(test_polygon.intersection(polygon).covers(test_polygon))
 
-    def test_triangle(self):
+    def test_triangle(self) -> None:
         test_polygon = geometry.Polygon(
             [
                 (-99.1795917, 19.432134),
