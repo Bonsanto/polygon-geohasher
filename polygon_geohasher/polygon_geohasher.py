@@ -1,11 +1,12 @@
 import geohash
 import queue
+from typing import Iterable, MutableSet, Union
 
 from shapely import geometry
 from shapely.ops import cascaded_union
 
 
-def geohash_to_polygon(geo):
+def geohash_to_polygon(geo: str) -> geometry.Polygon:
     """
     :param geo: String that represents the geohash.
     :return: Returns a Shapely's Polygon instance that represents the geohash.
@@ -20,7 +21,7 @@ def geohash_to_polygon(geo):
     return geometry.Polygon([corner_1, corner_2, corner_3, corner_4, corner_1])
 
 
-def polygon_to_geohashes(polygon, precision, inner=True):
+def polygon_to_geohashes(polygon: geometry.Polygon, precision: int, inner: bool = True) -> MutableSet[str]:
     """
     :param polygon: shapely polygon.
     :param precision: int. Geohashes' precision that form resulting polygon.
@@ -33,7 +34,7 @@ def polygon_to_geohashes(polygon, precision, inner=True):
     envelope = polygon.envelope
     centroid = polygon.centroid
 
-    testing_geohashes = queue.Queue()
+    testing_geohashes: queue.Queue[str] = queue.Queue()
     testing_geohashes.put(geohash.encode(centroid.y, centroid.x, precision))
 
     while not testing_geohashes.empty():
@@ -72,7 +73,7 @@ def polygon_to_geohashes(polygon, precision, inner=True):
     return inner_geohashes
 
 
-def geohashes_to_polygon(geohashes):
+def geohashes_to_polygon(geohashes: Iterable[str]) -> Union[geometry.Polygon, geometry.MultiPolygon]:
     """
     :param geohashes: array-like. List of geohashes to form resulting polygon.
     :return: shapely geometry. Resulting Polygon after combining geohashes.

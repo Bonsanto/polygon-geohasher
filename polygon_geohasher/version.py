@@ -1,4 +1,7 @@
-def _safe_int(string):
+from typing import Union
+
+
+def _safe_int(string: str) -> Union[int, str]:
     try:
         return int(string)
     except ValueError:
