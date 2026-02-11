@@ -1,5 +1,6 @@
 import unittest
 
+import polygon_geohasher as pgh
 from polygon_geohasher.polygon_geohasher import (
     polygon_to_geohashes,
     geohash_to_polygon,
@@ -9,6 +10,11 @@ from shapely import geometry
 
 
 class TestSimpleMethods(unittest.TestCase):
+    def test_top_level_exports(self):
+        self.assertIs(pgh.polygon_to_geohashes, polygon_to_geohashes)
+        self.assertIs(pgh.geohash_to_polygon, geohash_to_polygon)
+        self.assertIs(pgh.geohashes_to_polygon, geohashes_to_polygon)
+
     def test_one_geohash(self):
         test_geohash = "x1"
         test_polygon = geohash_to_polygon(test_geohash)
@@ -37,6 +43,15 @@ class TestSimpleMethods(unittest.TestCase):
         polygon = geohashes_to_polygon(polygon_to_geohashes(test_polygon, 7, False))
 
         self.assertTrue(polygon.area >= test_polygon.area)
+
+    def test_empty_polygon(self):
+        test_polygon = geometry.Polygon()
+        self.assertTrue(test_polygon.is_empty)
+        self.assertEqual(polygon_to_geohashes(test_polygon, 5), set())
+
+    def test_empty_geohashes(self):
+        polygon = geohashes_to_polygon(set())
+        self.assertTrue(polygon.is_empty)
 
 
 if __name__ == "__main__":
