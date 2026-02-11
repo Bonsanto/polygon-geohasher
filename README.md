@@ -22,7 +22,7 @@ pip (8+):
 Here are some simple examples:
 
 ```python
-from polygon_geohasher.polygon_geohasher import polygon_to_geohashes, geohashes_to_polygon
+from polygon_geohasher import polygon_to_geohashes, geohashes_to_polygon
 from shapely import geometry
 
 polygon = geometry.Polygon([(-99.1795917, 19.432134), (-99.1656847, 19.429034),
@@ -30,6 +30,14 @@ polygon = geometry.Polygon([(-99.1795917, 19.432134), (-99.1656847, 19.429034),
 inner_geohashes_polygon = geohashes_to_polygon(polygon_to_geohashes(polygon, 7))
 outer_geohashes_polygon = geohashes_to_polygon(polygon_to_geohashes(polygon, 7, False))
 ```
+
+## Benchmarking
+Compare the optimized implementation against the legacy algorithm:
+
+`$ .venv/bin/python benchmarks/polygon_to_geohashes.py --iterations 5 --precision 7`
+
+Use `--inner` or `--outer` to focus on a single mode, and `--no-validate` to skip
+output validation.
 
 
 `geohash_to_polygon(geohash)`:
