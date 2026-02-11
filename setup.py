@@ -28,6 +28,7 @@ setup(
     url="https://github.com/Bonsanto/polygon-geohasher",
     description="Wrapper over Shapely that returns the set of geohashes that form a Polygon",
     long_description=readme(),
+    long_description_content_type="text/markdown",
     license="MIT",
     packages=find_packages(),
     install_requires=requirements(),
