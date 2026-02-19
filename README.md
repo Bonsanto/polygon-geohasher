@@ -31,6 +31,14 @@ inner_geohashes_polygon = geohashes_to_polygon(polygon_to_geohashes(polygon, 7))
 outer_geohashes_polygon = geohashes_to_polygon(polygon_to_geohashes(polygon, 7, False))
 ```
 
+## Algorithm
+`polygon_to_geohashes` uses a hierarchical geohash cover. It starts with a coarse
+precision cover of the polygon bounds, discards cells that do not intersect the
+polygon, and only subdivides boundary cells until the target precision. Cells
+that are fully contained are expanded directly to the target precision without
+additional geometry checks. This keeps work closer to boundary complexity than
+to the full bounding box.
+
 ## Benchmarking
 Compare the optimized implementation against the legacy algorithm:
 

@@ -53,6 +53,65 @@ class TestSimpleMethods(unittest.TestCase):
         polygon = geohashes_to_polygon(set())
         self.assertTrue(polygon.is_empty)
 
+    def test_inner_geohashes_are_contained(self):
+        polygon = geometry.box(-1.0, -1.0, 1.0, 1.0)
+        geohashes = polygon_to_geohashes(polygon, 4, True)
+        self.assertTrue(geohashes)
+        self.assertTrue(
+            all(polygon.contains(geohash_to_polygon(g)) for g in geohashes)
+        )
+
+    def test_outer_geohashes_intersect(self):
+        shell = [(-1.0, -1.0), (1.0, -1.0), (1.0, 1.0), (-1.0, 1.0), (-1.0, -1.0)]
+        hole = [
+            (-0.2, -0.2),
+            (0.2, -0.2),
+            (0.2, 0.2),
+            (-0.2, 0.2),
+            (-0.2, -0.2),
+        ]
+        polygon = geometry.Polygon(shell, [hole])
+        geohashes = polygon_to_geohashes(polygon, 4, False)
+        self.assertTrue(geohashes)
+        self.assertTrue(
+            all(polygon.intersects(geohash_to_polygon(g)) for g in geohashes)
+        )
+
+    def test_inner_geohashes_respect_holes(self):
+        shell = [(-1.0, -1.0), (1.0, -1.0), (1.0, 1.0), (-1.0, 1.0), (-1.0, -1.0)]
+        hole = [
+            (-0.2, -0.2),
+            (0.2, -0.2),
+            (0.2, 0.2),
+            (-0.2, 0.2),
+            (-0.2, -0.2),
+        ]
+        polygon = geometry.Polygon(shell, [hole])
+        hole_polygon = geometry.Polygon(hole)
+        geohashes = polygon_to_geohashes(polygon, 4, True)
+        self.assertTrue(geohashes)
+        self.assertTrue(all(len(g) == 4 for g in geohashes))
+        self.assertTrue(
+            all(polygon.contains(geohash_to_polygon(g)) for g in geohashes)
+        )
+        self.assertTrue(
+            all(not hole_polygon.intersects(geohash_to_polygon(g)) for g in geohashes)
+        )
+
+    def test_outer_geohashes_intersect_multipolygon(self):
+        polygon = geometry.MultiPolygon(
+            [
+                geometry.box(-2.0, -2.0, -1.0, -1.0),
+                geometry.box(1.0, 1.0, 2.0, 2.0),
+            ]
+        )
+        geohashes = polygon_to_geohashes(polygon, 3, False)
+        self.assertTrue(geohashes)
+        self.assertTrue(all(len(g) == 3 for g in geohashes))
+        self.assertTrue(
+            all(polygon.intersects(geohash_to_polygon(g)) for g in geohashes)
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
